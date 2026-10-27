@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Estações das Boas Maneiras - 2º Ano A</title>
+    <!-- Fonte lúdica e de fácil leitura para crianças -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Paleta Alegre, Vibrante e de Alto Contraste (Acessível para NEE) */
+            --cor-fundo: #FFF9E6; /* Creme suave, não cansa a vista */
+            --cor-primaria: #4A90E2; /* Azul alegre */
+            --cor-secundaria: #FFD166; /* Amarelo sol */
+            --cor-sucesso: #06D6A0; /* Verde esperança */
+            --cor-atencao: #EF476F; /* Rosa/Vermelho suave para alertas */
+            --cor-texto: #2D3047; /* Azul muito escuro para leitura fácil */
+            --borda-raio: 24px; /* Bordas bem arredondadas e amigáveis */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Fredoka', 'Comic Sans MS', sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            line-height: 1.5;
+        }
+
+        /* Navegação Colorida e Grande */
+        nav {
+            display: flex;
+            background-color: white;
+            padding: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            z-index: 10;
+            gap: 12px;
+            border-bottom: 5px solid var(--cor-secundaria);
+        }
+
+        .aba {
+            flex: 1;
+            text-align: center;
+            padding: 16px 8px;
+            color: var(--cor-texto);
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: var(--borda-raio);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid transparent;
+            background-color: #F0F4F8;
+        }
+
+        .aba:hover { transform: translateY(-3px); }
+        
+        .aba.ativa {
+            background-color: var(--cor-primaria);
+            color: white;
+            border-color: #2A6BB5;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(74, 144, 226, 0.3);
+        }
+
+        /* Áreas de Conteúdo */
+        .seccao {
+            display: none;
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            animation: surgir 0.5s ease;
+        }
+
+        .seccao.ativa { display: flex; flex-direction: column; align-items: center; }
+
+        @keyframes surgir {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--cor-primaria);
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+        }
+
+        p.descricao {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 30px;
+            max-width: 800px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: var(--borda-raio);
+            border: 2px dashed var(--cor-secundaria);
+        }
+
+        /* Tela 1: Cartas de Situação (Estilo Jogo) */
+        .grid-cartas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .carta {
+            height: 240px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .carta-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+            transform-style: preserve-3d;
+            border-radius: var(--borda-raio);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .carta.virada .carta-inner { transform: rotateY(180deg); }
+
+        .carta-frente, .carta-verso {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--borda-raio);
+            padding: 20px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .carta-frente { 
+            background: linear-gradient(135deg, var(--cor-secundaria), #FFB703); 
+            color: var(--cor-texto); 
+            font-size: 4rem; 
+        }
+        
+        .carta-frente span { font-size: 1.2rem; margin-top: 10px; color: var(--cor-texto); }
+
+        .carta-verso {
+            background-color: white;
+            color: var(--cor-atencao);
+            transform: rotateY(180deg);
+            border: 4px solid var(--cor-atencao);
+        }
+
+        /* Tela 2: Lousa Divertida */
+        #container-lousa {
+            width: 100%;
+            max-width: 900px;
+            height: 45vh;
+            background-color: #2D6A4F; /* Verde lousa clássico e acolhedor */
+            border-radius: var(--borda-raio);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.3), 0 10px 25px rgba(0,0,0,0.15);
+            margin-bottom: 24px;
+            border: 8px solid #8B5E3C; /* Moldura de madeira */
+            position: relative;
+        }
+
+        #quadro-texto {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            color: #F8F9FA;
+            font-size: 1.8rem;
+            font-family: 'Fredoka', cursive, sans-serif;
+            border: none;
+            padding: 24px;
+            box-sizing: border-box;
+            resize: none;
+            outline: none;
+            line-height: 1.6;
+        }
+        
+        #quadro-texto::placeholder { color: rgba(255, 255, 255, 0.5); }
+
+        .controles-lousa {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            background-color: var(--cor-sucesso);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-family: 'Fredoka', sans-serif;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #04A77D, 0 10px 15px rgba(0,0,0,0.1);
+            transition: all 0.1s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 0 0 #04A77D, inset 0 3px 5px rgba(0,0,0,0.2);
+        }
+
+        .btn-secundario { 
+            background-color: var(--cor-atencao); 
+            box-shadow: 0 6px 0 #D90429, 0 10px 15px rgba(0,0,0,0.1);
+        }
+        .btn-secundario:active { box-shadow: 0 0 0 #D90429, inset 0 3px 5px rgba(0,0,0,0.2); }
+
+        /* Tela 3: Estações das Boas Maneiras (Produto do PI) */
+        .grid-estacoes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .estacao {
+            background-color: white;
+            border-radius: var(--borda-raio);
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 4px solid #E0E0E0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .estacao:hover { 
+            transform: translateY(-8px) scale(1.02); 
+            border-color: var(--cor-primaria);
+            box-shadow: 0 15px 30px rgba(74, 144, 226, 0.2);
+        }
+        
+        .estacao.ativa { 
+            border-color: var(--cor-sucesso); 
+            background-color: #E8FDF3; 
+            transform: scale(1.05);
+        }
+
+        .estacao-icon { font-size: 3.5rem; margin-bottom: 12px; display: block; transition: transform 0.3s; }
+        .estacao.ativa .estacao-icon { transform: scale(1.2) rotate(10deg); }
+        
+        .estacao-titulo { font-size: 1.8rem; font-weight: 700; color: var(--cor-primaria); margin-bottom: 8px; }
+        
+        .estacao-desc {
+            font-size: 1.2rem;
+            color: #555;
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 3px dashed var(--cor-secundaria);
+            line-height: 1.4;
+        }
+        
+        .estacao.ativa .estacao-desc { display: block; animation: surgir 0.4s ease; }
+
+        /* Acessibilidade: Foco visível para navegação por teclado */
+        *:focus-visible {
+            outline: 4px solid var(--cor-secundaria);
+            outline-offset: 4px;
+        }
+
+        /* Responsividade para Celulares/Tablets */
+        @media (max-width: 768px) {
+            .aba { font-size: 1rem; padding: 12px 5px; }
+            h2 { font-size: 1.8rem; }
+            .carta { height: 200px; }
+            .carta-frente, .carta-verso { font-size: 1.2rem; }
+            #quadro-texto { font-size: 1.4rem; }
+            .estacao-titulo { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav role="navigation" aria-label="Menu principal">
+        <div class="aba ativa" onclick="mudarAba('cartas', this)" role="button" tabindex="0" aria-pressed="true">1. O que acontece? 🤔</div>
+        <div class="aba" onclick="mudarAba('lousa', this)" role="button" tabindex="0" aria-pressed="false">2. Nossos Combinados 📝</div>
+        <div class="aba" onclick="mudarAba('estacoes', this)" role="button" tabindex="0" aria-pressed="false">3. Estações Mágicas ✨</div>
+    </nav>
+
+    <!-- Tela 1: Roda de Conversa (Baseado nas observações do PI) -->
+    <div id="cartas" class="seccao ativa" role="tabpanel">
+        <h2>O que acontece na nossa sala?</h2>
+        <p class="descricao">Clique nas cartas amarelas para descobrir situações do nosso dia e conversar sobre como podemos melhorar juntos!</p>
+        <div class="grid-cartas" id="grid-cartas"></div>
+    </div>
+
+    <!-- Tela 2: Lousa Digital (Construção coletiva do PI) -->
+    <div id="lousa" class="seccao" role="tabpanel">
+        <h2>Vamos criar as nossas regras?</h2>
+        <p class="descricao">Digite aqui os combinados que a turma criou. Eles ficam salvos magicamente no computador!</p>
+        <div id="container-lousa">
+            <textarea id="quadro-texto" placeholder="Ex: 1. Ouvir o amigo quando ele estiver falando... 🎧" aria-label="Área para escrever os combinados da turma"></textarea>
+        </div>
+        <div class="controles-lousa">
+            <button class="btn btn-secundario" onclick="limparTexto()" aria-label="Apagar o quadro">🗑️ Apagar</button>
+            <button class="btn" onclick="salvarDocumento()" aria-label="Baixar combinados">💾 Salvar Combinados</button>
+        </div>
+    </div>
+
+    <!-- Tela 3: Estações das Boas Maneiras (Produto Educacional - Etapa 8 do PI) -->
+    <div id="estacoes" class="seccao" role="tabpanel">
+        <h2>Estações das Boas Maneiras</h2>
+        <p class="descricao">Clique em cada palavra mágica para lembrar como ela nos ajuda a ser super-heróis da convivência!</p>
+        <div class="grid-estacoes" id="grid-estacoes"></div>
+    </div>
+
+    <script>
+        // --- Navegação Acessível e Suave ---
+        function mudarAba(id, elemento) {
+            document.querySelectorAll('.seccao').forEach(sec => sec.classList.remove('ativa'));
+            document.querySelectorAll('.aba').forEach(aba => {
+                aba.classList.remove('ativa');
+                aba.setAttribute('aria-pressed', 'false');
+            });
+            document.getElementById(id).classList.add('ativa');
+            elemento.classList.add('ativa');
+            elemento.setAttribute('aria-pressed', 'true');
+        }
+
+        document.querySelectorAll('.aba').forEach(aba => {
+            aba.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); aba.click(); }
+            });
+        });
+
+        // --- Tela 1: Cartas de Situação (Linguagem infantil e direta) ---
+        const situacoes = [
+            "Interromper o amigo que está falando 🗣️",
+            "Não esperar a minha vez de jogar ou falar ⏳",
+            "Falar muito alto dentro da sala de aula 🔊",
+            "Pegar o material do colega sem pedir 🎒",
+            "Provocar ou zoar um colega no recreio 😢",
+            "Não aceitar quando o amigo pensa diferente 🤷"
+        ];
+
+        const gridCartas = document.getElementById('grid-cartas');
+        situacoes.forEach((sit) => {
+            const carta = document.createElement('div');
+            carta.className = 'carta';
+            carta.setAttribute('role', 'button');
+            carta.setAttribute('tabindex', '0');
+            carta.setAttribute('aria-label', 'Clique para virar a carta e ler a situação');
+            carta.innerHTML = `
+                <div class="carta-inner">
+                    <div class="carta-frente">❓<span>Clique aqui!</span></div>
+                    <div class="carta-verso">${sit}</div>
+                </div>
+            `;
+            
+            const virarCarta = () => carta.classList.toggle('virada');
+            carta.onclick = virarCarta;
+            carta.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); virarCarta(); }
+            });
+            gridCartas.appendChild(carta);
+        });
+
+        // --- Tela 2: Lousa com Persistência (localStorage) ---
+        const quadroTexto = document.getElementById('quadro-texto');
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            const textoSalvo = localStorage.getItem('combinados2AnoA');
+            if (textoSalvo) quadroTexto.value = textoSalvo;
+        });
+
+        quadroTexto.addEventListener('input', () => {
+            localStorage.setItem('combinados2AnoA', quadroTexto.value);
+        });
+
+        function limparTexto() {
+            if (confirm("Tem certeza que deseja apagar todos os nossos combinados? 🥺")) {
+                quadroTexto.value = '';
+                localStorage.removeItem('combinados2AnoA');
+            }
+        }
+
+        function salvarDocumento() {
+            const texto = quadroTexto.value.replace(/\n/g, '<br>');
+            if (!texto.trim()) {
+                alert("Ops! O quadro está vazio. Vamos escrever nossos combinados primeiro! ✏️");
+                return;
+            }
+
+            const conteudo = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+            <head><meta charset='utf-8'><title>Combinados da Turma</title>
+            <style>body { font-family: 'Comic Sans MS', Arial, sans-serif; font-size: 16pt; color: #333; }</style>
+            </head>
+            <body>
+                <h1 style="text-align: center; color: #4A90E2;">🌟 Nossos Combinados da Turma 🌟</h1>
+                <h3 style="text-align: center; color: #666;">Escola Municipal Professor Orlando Pinto de Oliveira<br>2º Ano A</h3>
+                <hr style="border: 2px dashed #FFD166;">
+                <p>${texto}</p>
+                <br>
+                <p style="text-align: right; color: #888;">Data: ${new Date().toLocaleDateString('pt-BR')}</p>
+            </body></html>`;
+
+            const blob = new Blob(['\ufeff', conteudo], { type: 'application/msword' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'Combinados_2AnoA.doc';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            alert("Combinados salvos com sucesso! Parabéns, turma! 🎉");
+        }
+
+        // --- Tela 3: Estações das Boas Maneiras (Fiel ao Produto do PI) ---
+        const estacoes = [
+            { icon: "☀️", titulo: "Bom Dia", desc: "Usamos para cumprimentar todos ao chegar, deixando o dia de todos mais feliz e acolhedor!" },
+            { icon: "🙏", titulo: "Por Favor", desc: "Usamos quando precisamos pedir algo, mostrando que respeitamos e valorizamos o outro." },
+            { icon: "🚶", titulo: "Com Licença", desc: "Usamos ao precisar passar ou chamar a atenção, respeitando o espaço e a vez do colega." },
+            { icon: "❤️", titulo: "Desculpa", desc: "Usamos quando cometemos um errinho, mostrando que queremos consertar e fazer as pazes." },
+            { icon: "🤫", titulo: "Silêncio", desc: "Usamos na biblioteca ou quando o professor está explicando, respeitando a concentração de todos." },
+            { icon: "🌟", titulo: "Obrigado(a)", desc: "Usamos para reconhecer e valorizar quando alguém nos ajuda ou faz algo legal por nós!" }
+        ];
+
+        const gridEstacoes = document.getElementById('grid-estacoes');
+        estacoes.forEach(est => {
+            const div = document.createElement('div');
+            div.className = 'estacao';
+            div.setAttribute('role', 'button');
+            div.setAttribute('tabindex', '0');
+            div.setAttribute('aria-label', `Estação ${est.titulo}. Clique para ver quando usar.`);
+            div.innerHTML = `
+                <span class="estacao-icon">${est.icon}</span>
+                <div class="estacao-titulo">${est.titulo}</div>
+                <div class="estacao-desc">${est.desc}</div>
+            `;
+            
+            const toggleEstacao = () => div.classList.toggle('ativa');
+            div.onclick = toggleEstacao;
+            div.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleEstacao(); }
+            });
+            gridEstacoes.appendChild(div);
+        });
+    </script>
+</body>
+</html>
