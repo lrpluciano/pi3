@@ -4,18 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Estações das Boas Maneiras - 2º Ano A</title>
-    <!-- Fonte lúdica e de fácil leitura para crianças -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta Alegre, Vibrante e de Alto Contraste (Acessível para NEE) */
-            --cor-fundo: #FFF9E6; /* Creme suave, não cansa a vista */
-            --cor-primaria: #4A90E2; /* Azul alegre */
-            --cor-secundaria: #FFD166; /* Amarelo sol */
-            --cor-sucesso: #06D6A0; /* Verde esperança */
-            --cor-atencao: #EF476F; /* Rosa/Vermelho suave para alertas */
-            --cor-texto: #2D3047; /* Azul muito escuro para leitura fácil */
-            --borda-raio: 24px; /* Bordas bem arredondadas e amigáveis */
+            --cor-fundo: #FFF9E6;
+            --cor-primaria: #4A90E2;
+            --cor-secundaria: #FFD166;
+            --cor-sucesso: #06D6A0;
+            --cor-atencao: #EF476F;
+            --cor-texto: #2D3047;
+            --borda-raio: 24px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,7 +29,6 @@
             line-height: 1.5;
         }
 
-        /* Navegação Colorida e Grande */
         nav {
             display: flex;
             background-color: white;
@@ -47,7 +44,7 @@
             text-align: center;
             padding: 16px 8px;
             color: var(--cor-texto);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             cursor: pointer;
             border-radius: var(--borda-raio);
@@ -66,7 +63,6 @@
             box-shadow: 0 6px 12px rgba(74, 144, 226, 0.3);
         }
 
-        /* Áreas de Conteúdo */
         .seccao {
             display: none;
             flex: 1;
@@ -95,7 +91,7 @@
             text-align: center;
             font-size: 1.3rem;
             color: #555;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             max-width: 800px;
             background: white;
             padding: 15px 25px;
@@ -103,7 +99,7 @@
             border: 2px dashed var(--cor-secundaria);
         }
 
-        /* Tela 1: Cartas de Situação (Estilo Jogo) */
+        /* Tela 1: Cartas de Situação */
         .grid-cartas {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -162,16 +158,16 @@
             border: 4px solid var(--cor-atencao);
         }
 
-        /* Tela 2: Lousa Divertida */
+        /* Tela 2: Lousa Única e Grande */
         #container-lousa {
             width: 100%;
-            max-width: 900px;
-            height: 45vh;
-            background-color: #2D6A4F; /* Verde lousa clássico e acolhedor */
+            max-width: 1200px;
+            height: 65vh;
+            background-color: #2D6A4F;
             border-radius: var(--borda-raio);
             box-shadow: inset 0 0 30px rgba(0,0,0,0.3), 0 10px 25px rgba(0,0,0,0.15);
             margin-bottom: 24px;
-            border: 8px solid #8B5E3C; /* Moldura de madeira */
+            border: 10px solid #8B5E3C;
             position: relative;
         }
 
@@ -227,7 +223,7 @@
         }
         .btn-secundario:active { box-shadow: 0 0 0 #D90429, inset 0 3px 5px rgba(0,0,0,0.2); }
 
-        /* Tela 3: Estações das Boas Maneiras (Produto do PI) */
+        /* Tela 3: Estações das Boas Maneiras */
         .grid-estacoes {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -277,18 +273,17 @@
         
         .estacao.ativa .estacao-desc { display: block; animation: surgir 0.4s ease; }
 
-        /* Acessibilidade: Foco visível para navegação por teclado */
         *:focus-visible {
             outline: 4px solid var(--cor-secundaria);
             outline-offset: 4px;
         }
 
-        /* Responsividade para Celulares/Tablets */
         @media (max-width: 768px) {
-            .aba { font-size: 1rem; padding: 12px 5px; }
+            .aba { font-size: 0.95rem; padding: 12px 5px; }
             h2 { font-size: 1.8rem; }
             .carta { height: 200px; }
             .carta-frente, .carta-verso { font-size: 1.2rem; }
+            #container-lousa { height: 55vh; }
             #quadro-texto { font-size: 1.4rem; }
             .estacao-titulo { font-size: 1.5rem; }
         }
@@ -302,27 +297,26 @@
         <div class="aba" onclick="mudarAba('estacoes', this)" role="button" tabindex="0" aria-pressed="false">3. Estações Mágicas ✨</div>
     </nav>
 
-    <!-- Tela 1: Roda de Conversa (Baseado nas observações do PI) -->
     <div id="cartas" class="seccao ativa" role="tabpanel">
         <h2>O que acontece na nossa sala?</h2>
         <p class="descricao">Clique nas cartas amarelas para descobrir situações do nosso dia e conversar sobre como podemos melhorar juntos!</p>
         <div class="grid-cartas" id="grid-cartas"></div>
     </div>
 
-    <!-- Tela 2: Lousa Digital (Construção coletiva do PI) -->
     <div id="lousa" class="seccao" role="tabpanel">
         <h2>Vamos criar as nossas regras?</h2>
-        <p class="descricao">Digite aqui os combinados que a turma criou. Eles ficam salvos magicamente no computador!</p>
+        <p class="descricao">Escrevam juntos no quadração! Tudo fica salvo magicamente no computador.</p>
+        
         <div id="container-lousa">
             <textarea id="quadro-texto" placeholder="Ex: 1. Ouvir o amigo quando ele estiver falando... 🎧" aria-label="Área para escrever os combinados da turma"></textarea>
         </div>
+
         <div class="controles-lousa">
             <button class="btn btn-secundario" onclick="limparTexto()" aria-label="Apagar o quadro">🗑️ Apagar</button>
-            <button class="btn" onclick="salvarDocumento()" aria-label="Baixar combinados">💾 Salvar Combinados</button>
+            <button class="btn" onclick="salvarDocumento()" aria-label="Baixar combinados em arquivo Word">💾 Salvar Combinados</button>
         </div>
     </div>
 
-    <!-- Tela 3: Estações das Boas Maneiras (Produto Educacional - Etapa 8 do PI) -->
     <div id="estacoes" class="seccao" role="tabpanel">
         <h2>Estações das Boas Maneiras</h2>
         <p class="descricao">Clique em cada palavra mágica para lembrar como ela nos ajuda a ser super-heróis da convivência!</p>
@@ -330,7 +324,6 @@
     </div>
 
     <script>
-        // --- Navegação Acessível e Suave ---
         function mudarAba(id, elemento) {
             document.querySelectorAll('.seccao').forEach(sec => sec.classList.remove('ativa'));
             document.querySelectorAll('.aba').forEach(aba => {
@@ -348,7 +341,6 @@
             });
         });
 
-        // --- Tela 1: Cartas de Situação (Linguagem infantil e direta) ---
         const situacoes = [
             "Interromper o amigo que está falando 🗣️",
             "Não esperar a minha vez de jogar ou falar ⏳",
@@ -380,7 +372,6 @@
             gridCartas.appendChild(carta);
         });
 
-        // --- Tela 2: Lousa com Persistência (localStorage) ---
         const quadroTexto = document.getElementById('quadro-texto');
         
         window.addEventListener('DOMContentLoaded', () => {
@@ -430,7 +421,6 @@
             alert("Combinados salvos com sucesso! Parabéns, turma! 🎉");
         }
 
-        // --- Tela 3: Estações das Boas Maneiras (Fiel ao Produto do PI) ---
         const estacoes = [
             { icon: "☀️", titulo: "Bom Dia", desc: "Usamos para cumprimentar todos ao chegar, deixando o dia de todos mais feliz e acolhedor!" },
             { icon: "🙏", titulo: "Por Favor", desc: "Usamos quando precisamos pedir algo, mostrando que respeitamos e valorizamos o outro." },
