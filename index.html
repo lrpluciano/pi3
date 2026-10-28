@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Estações das Boas Maneiras - 2º Ano A</title>
+    <!-- Fonte lúdica e de fácil leitura para crianças -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --cor-fundo: #FFF9E6;
-            --cor-primaria: #4A90E2;
-            --cor-secundaria: #FFD166;
-            --cor-sucesso: #06D6A0;
-            --cor-atencao: #EF476F;
-            --cor-texto: #2D3047;
-            --borda-raio: 24px;
+            /* Paleta Alegre, Vibrante e de Alto Contraste (Acessível para NEE) */
+            --cor-fundo: #FFF9E6; /* Creme suave, não cansa a vista */
+            --cor-primaria: #4A90E2; /* Azul alegre */
+            --cor-secundaria: #FFD166; /* Amarelo sol */
+            --cor-sucesso: #06D6A0; /* Verde esperança */
+            --cor-atencao: #EF476F; /* Rosa/Vermelho suave para alertas */
+            --cor-texto: #2D3047; /* Azul muito escuro para leitura fácil */
+            --borda-raio: 24px; /* Bordas bem arredondadas e amigáveis */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,6 +31,7 @@
             line-height: 1.5;
         }
 
+        /* Navegação Colorida e Grande */
         nav {
             display: flex;
             background-color: white;
@@ -42,9 +45,9 @@
         .aba {
             flex: 1;
             text-align: center;
-            padding: 16px 8px;
+            padding: 14px 8px;
             color: var(--cor-texto);
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
             cursor: pointer;
             border-radius: var(--borda-raio);
@@ -63,6 +66,7 @@
             box-shadow: 0 6px 12px rgba(74, 144, 226, 0.3);
         }
 
+        /* Áreas de Conteúdo */
         .seccao {
             display: none;
             flex: 1;
@@ -158,16 +162,16 @@
             border: 4px solid var(--cor-atencao);
         }
 
-        /* Tela 2: Lousa Única e Grande */
+        /* Tela 2: Lousa Divertida */
         #container-lousa {
             width: 100%;
-            max-width: 1200px;
-            height: 65vh;
+            max-width: 900px;
+            height: 45vh;
             background-color: #2D6A4F;
             border-radius: var(--borda-raio);
             box-shadow: inset 0 0 30px rgba(0,0,0,0.3), 0 10px 25px rgba(0,0,0,0.15);
             margin-bottom: 24px;
-            border: 10px solid #8B5E3C;
+            border: 8px solid #8B5E3C;
             position: relative;
         }
 
@@ -273,19 +277,233 @@
         
         .estacao.ativa .estacao-desc { display: block; animation: surgir 0.4s ease; }
 
+        /* ========================================== */
+        /* TELA 4: FOLHA DE ATIVIDADE PARA IMPRESSÃO  */
+        /* ========================================== */
+        .preview-folha {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: var(--borda-raio);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 4px solid var(--cor-primaria);
+        }
+
+        .folha-atividade {
+            border: 4px solid #4A90E2;
+            border-radius: 10px;
+            padding: 15px;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+        }
+
+        .cabecalho-atividade {
+            text-align: center;
+            border-bottom: 2px dashed #bdc3c7;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .cabecalho-atividade h1 {
+            color: #4A90E2;
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .identificacao {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .linha-nome {
+            flex: 2;
+            border-bottom: 2px solid #333;
+            margin-left: 10px;
+            min-width: 200px;
+        }
+
+        .linha-data {
+            flex: 1;
+            border-bottom: 2px solid #333;
+            margin-left: 10px;
+            min-width: 100px;
+        }
+
+        .secao-texto {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .linha-escrita {
+            border-bottom: 2px dashed #95a5a6;
+            height: 35px;
+            margin-top: 10px;
+        }
+
+        .secao-desenho {
+            flex: 1;
+            min-height: 40vh;
+            border: 3px solid #F5A623;
+            border-radius: 15px;
+            padding: 10px 15px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #fdfbf7;
+        }
+
+        .secao-desenho h2 {
+            margin: 0 0 5px 0;
+            font-size: 1.3rem;
+            color: #F5A623;
+            text-align: left;
+        }
+
+        .rodape-emocao {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 2px solid #bdc3c7;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .texto-emocao {
+            flex: 1;
+            font-size: 1.1rem;
+            line-height: 1.3;
+            min-width: 200px;
+        }
+
+        .rosto-emocao {
+            width: 70px;
+            height: 70px;
+            border: 3px solid #333;
+            border-radius: 50%;
+            background-color: #fff;
+            flex-shrink: 0;
+        }
+
+        .btn-imprimir-grande {
+            background-color: var(--cor-primaria);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Fredoka', sans-serif;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #2A6BB5, 0 12px 20px rgba(0,0,0,0.15);
+            transition: all 0.1s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn-imprimir-grande:active {
+            transform: translateY(8px);
+            box-shadow: 0 0 0 #2A6BB5, inset 0 3px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Acessibilidade */
         *:focus-visible {
             outline: 4px solid var(--cor-secundaria);
             outline-offset: 4px;
         }
 
+        /* Responsividade */
         @media (max-width: 768px) {
-            .aba { font-size: 0.95rem; padding: 12px 5px; }
+            .aba { font-size: 1rem; padding: 12px 5px; }
             h2 { font-size: 1.8rem; }
             .carta { height: 200px; }
             .carta-frente, .carta-verso { font-size: 1.2rem; }
-            #container-lousa { height: 55vh; }
             #quadro-texto { font-size: 1.4rem; }
             .estacao-titulo { font-size: 1.5rem; }
+            .cabecalho-atividade h1 { font-size: 1.4rem; }
+            .identificacao { flex-direction: column; }
+            .linha-nome, .linha-data { margin-left: 0; margin-top: 5px; }
+        }
+
+        /* ========================================== */
+        /* CONFIGURAÇÃO DE IMPRESSÃO (A4 PERFEITO)    */
+        /* ========================================== */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 8mm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                box-shadow: none !important;
+            }
+
+            body {
+                background-color: white !important;
+                height: auto !important;
+                overflow: visible !important;
+                display: block !important;
+                font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', sans-serif !important;
+            }
+
+            /* Esconde TUDO do site, exceto a folha de atividade */
+            nav, .seccao:not(#atividade), .btn-imprimir-grande, h2, p.descricao {
+                display: none !important;
+            }
+
+            /* Configura a aba de atividade para ocupar a folha toda */
+            #atividade {
+                display: block !important;
+                padding: 0 !important;
+                overflow: visible !important;
+                height: 100% !important;
+            }
+
+            .preview-folha {
+                border: none !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+                box-shadow: none !important;
+            }
+
+            .folha-atividade {
+                height: 100% !important;
+                min-height: 97vh !important;
+                border: 4px solid #000 !important; /* Borda preta para economizar tinta e ficar nítido */
+            }
+
+            .cabecalho-atividade h1 {
+                color: #000 !important;
+                font-size: 2rem !important;
+            }
+
+            .secao-desenho {
+                border-color: #000 !important;
+                background-color: #fff !important;
+            }
+
+            .secao-desenho h2 {
+                color: #000 !important;
+            }
+
+            .rodape-emocao {
+                background-color: #fff !important;
+                border-color: #000 !important;
+            }
         }
     </style>
 </head>
@@ -295,35 +513,83 @@
         <div class="aba ativa" onclick="mudarAba('cartas', this)" role="button" tabindex="0" aria-pressed="true">1. O que acontece? 🤔</div>
         <div class="aba" onclick="mudarAba('lousa', this)" role="button" tabindex="0" aria-pressed="false">2. Nossos Combinados 📝</div>
         <div class="aba" onclick="mudarAba('estacoes', this)" role="button" tabindex="0" aria-pressed="false">3. Estações Mágicas ✨</div>
+        <div class="aba" onclick="mudarAba('atividade', this)" role="button" tabindex="0" aria-pressed="false">4. Para Imprimir 🖨️</div>
     </nav>
 
+    <!-- Tela 1: Roda de Conversa -->
     <div id="cartas" class="seccao ativa" role="tabpanel">
         <h2>O que acontece na nossa sala?</h2>
         <p class="descricao">Clique nas cartas amarelas para descobrir situações do nosso dia e conversar sobre como podemos melhorar juntos!</p>
         <div class="grid-cartas" id="grid-cartas"></div>
     </div>
 
+    <!-- Tela 2: Lousa Digital -->
     <div id="lousa" class="seccao" role="tabpanel">
         <h2>Vamos criar as nossas regras?</h2>
-        <p class="descricao">Escrevam juntos no quadração! Tudo fica salvo magicamente no computador.</p>
-        
+        <p class="descricao">Digite aqui os combinados que a turma criou. Eles ficam salvos magicamente no computador!</p>
         <div id="container-lousa">
             <textarea id="quadro-texto" placeholder="Ex: 1. Ouvir o amigo quando ele estiver falando... 🎧" aria-label="Área para escrever os combinados da turma"></textarea>
         </div>
-
         <div class="controles-lousa">
             <button class="btn btn-secundario" onclick="limparTexto()" aria-label="Apagar o quadro">🗑️ Apagar</button>
-            <button class="btn" onclick="salvarDocumento()" aria-label="Baixar combinados em arquivo Word">💾 Salvar Combinados</button>
+            <button class="btn" onclick="salvarDocumento()" aria-label="Baixar combinados">💾 Salvar Combinados</button>
         </div>
     </div>
 
+    <!-- Tela 3: Estações das Boas Maneiras -->
     <div id="estacoes" class="seccao" role="tabpanel">
         <h2>Estações das Boas Maneiras</h2>
         <p class="descricao">Clique em cada palavra mágica para lembrar como ela nos ajuda a ser super-heróis da convivência!</p>
         <div class="grid-estacoes" id="grid-estacoes"></div>
     </div>
 
+    <!-- TELA 4: FOLHA DE ATIVIDADE PARA IMPRESSÃO -->
+    <div id="atividade" class="seccao" role="tabpanel">
+        <h2>Hora de Registrar! 📝</h2>
+        <p class="descricao">Depois da roda de conversa, imprima esta folha e entregue para as crianças escreverem e desenharem!</p>
+        
+        <button class="btn-imprimir-grande" onclick="window.print()">
+            🖨️ IMPRIMIR FOLHA DE ATIVIDADE
+        </button>
+
+        <div class="preview-folha">
+            <div class="folha-atividade">
+                <!-- Cabeçalho -->
+                <div class="cabecalho-atividade">
+                    <h1>🧶 O Novelo das Emoções e os Nossos Combinados</h1>
+                    <div class="identificacao">
+                        <div>Nome: <span class="linha-nome"></span></div>
+                        <div>Data: <span class="linha-data"></span></div>
+                    </div>
+                </div>
+
+                <!-- Escrita do Combinado -->
+                <div class="secao-texto">
+                    <strong>1. O combinado da turma que eu escolhi foi:</strong>
+                    <div class="linha-escrita"></div>
+                    <div class="linha-escrita"></div>
+                </div>
+
+                <!-- Área de Desenho MEGA AMPLIADA -->
+                <div class="secao-desenho">
+                    <h2>2. Faça um desenho bem grande mostrando esse combinado:</h2>
+                    <!-- Espaço livre máximo para a criança desenhar à mão -->
+                </div>
+
+                <!-- Emoção -->
+                <div class="rodape-emocao">
+                    <div class="texto-emocao">
+                        <strong>3. Como eu me sinto?</strong><br>
+                        Desenhe no círculo o rosto que mostra a emoção que você sente quando todos respeitam essa regra.
+                    </div>
+                    <div class="rosto-emocao"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // --- Navegação Acessível e Suave ---
         function mudarAba(id, elemento) {
             document.querySelectorAll('.seccao').forEach(sec => sec.classList.remove('ativa'));
             document.querySelectorAll('.aba').forEach(aba => {
@@ -341,6 +607,7 @@
             });
         });
 
+        // --- Tela 1: Cartas de Situação ---
         const situacoes = [
             "Interromper o amigo que está falando 🗣️",
             "Não esperar a minha vez de jogar ou falar ⏳",
@@ -372,6 +639,7 @@
             gridCartas.appendChild(carta);
         });
 
+        // --- Tela 2: Lousa com Persistência ---
         const quadroTexto = document.getElementById('quadro-texto');
         
         window.addEventListener('DOMContentLoaded', () => {
@@ -421,6 +689,7 @@
             alert("Combinados salvos com sucesso! Parabéns, turma! 🎉");
         }
 
+        // --- Tela 3: Estações das Boas Maneiras ---
         const estacoes = [
             { icon: "☀️", titulo: "Bom Dia", desc: "Usamos para cumprimentar todos ao chegar, deixando o dia de todos mais feliz e acolhedor!" },
             { icon: "🙏", titulo: "Por Favor", desc: "Usamos quando precisamos pedir algo, mostrando que respeitamos e valorizamos o outro." },
